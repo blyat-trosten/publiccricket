@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <link href='https://fonts.googleapis.com/css?family=Average' rel='stylesheet'>
+    <head>
+        <script>
+            turn = true //this is if it's Team 1's turn or not
+            player = 1
+            over = 0
+
+            function bat1(){
+                if(turn && over<=60){
+                    score = Math.floor(5*Math.random())
+                    over++
+                    document.getElementById("over").innerHTML = "Over: " + over
+                    if(score==5)
+                        score = 6
+                    x = document.getElementById("p1").innerHTML.split(": ")[1]
+                    x = parseInt(x)
+                    document.getElementById("p1").innerHTML = "Score: " + (x + score)
+                    if(score == 0){
+                        alert("You're out!")
+                        document.getElementById("p1b" + player).style.color = "red"
+                        document.getElementById("p1b" + player).style.fontWeight = "normal"
+                        player++
+                        if(player<12){
+                            document.getElementById("p1b" + player).style.fontWeight = "bold"
+                            document.getElementById("p1b" + player).style.color = "#3FD300"
+                        } else {
+                            alert("All your players are out! It is Team 2's turn.")
+                            over = 0
+                            turn = false
+                            player = 1
+                            document.getElementById("p2b" + player).style.fontWeight = "bold"
+                            document.getElementById("p2b" + player).style.color = "#3FD300"
+                        }
+                    }
+                } else if(over>60){
+                    alert("You have balled 60 times! Your turn is over!")
+                    turn = false
+                    over = 0
+                }else {
+                    alert("It's not your turn!")
+                }
+            }
+
+            function bat2(){
+                if(!turn){
+                    score = Math.floor(5*Math.random())
+                    over++
+                    document.getElementById("over").innerHTML = "Over: " + over
+                    if(score==5)
+                        score = 6
+                    x = document.getElementById("p2").innerHTML.split(": ")[1]
+                    x = parseInt(x)
+                    document.getElementById("p2").innerHTML = "Score: " + (x + score)
+                    if(score == 0){
+                        alert("You're out!")
+                        document.getElementById("p2b" + player).style.color = "red"
+                        document.getElementById("p2b" + player).style.fontWeight = "normal"
+                        player++
+                        if(player<12){
+                            document.getElementById("p2b" + player).style.fontWeight = "bold"
+                            document.getElementById("p2b" + player).style.color = "#3FD300"
+                        } else {
+                            alert("All your players are out! Game over!")
+                            endgame()
+                        }
+                    }
+                } else if(over>60){
+                    alert("You have balled 60 times! Game over!")
+                    endgame()
+                }else {
+                    alert("It's not your turn!")
+                }
+            }
+
+            function endgame(){
+                if(document.getElementById("p1").innerHTML.split(": ")[1] < document.getElementById("p2").innerHTML.split(": ")[1]){
+                    alert("What a good game! Congratulations to team 2 for winning!")
+                } else if (document.getElementById("p1").innerHTML.split(": ")[1] > document.getElementById("p2").innerHTML.split(": ")[1]){
+                    alert("What a good game! Congratulations to team 1 for winning!")
+                } else {
+                    alert("What a good game! Both teams tried their best, yet ended up tying!")
+                }
+            }
+        </script>
+        <style>
+            body {
+                text-align: center;
+                font-family: 'Average';
+            }
+    
+            p {
+                font-size: 20px;
+                padding: 0;
+            }
+    
+            h1 {
+                font-size: 45px;
+            }
+            h2{
+                font-style: italic;
+                font-size: 35px;
+                font-weight: normal;
+            }
+            #d1{
+                width: 50%;
+                float:  left;
+            }
+            #d2{
+                width: 50%;
+                float:  right;
+            }
+            .b{
+                padding: 1%;
+                font-size: 25px;
+                font-weight: bold;
+            }
+            button, #bat1, #bat2{
+                font-family: 'Average';
+                font-weight: bold;
+                font-size: 17px;
+                padding: 0.5%;
+            }
+            #p1b1{
+                font-weight: bold;
+                color: #3FD300;
+            }
+        </style>
+    </head>
+    <body>
+        <h2 id="over">Over: 0</h2>
+        <div id="d1">
+            <h1>Team 1</h1>
+            <h2 id="p1">Score: 0</h2>
+            <button id = "bat1" onclick = "bat1()">Bat</button>
+            <p class = "b">Batters</p>
+            <p id="p1b1">Batter 1</p>
+            <p id="p1b2">Batter 2</p>
+            <p id="p1b3">Batter 3</p>
+            <p id="p1b4">Batter 4</p>
+            <p id="p1b5">Batter 5</p>
+            <p id="p1b6">Batter 6</p>
+            <p id="p1b7">Batter 7</p>
+            <p id="p1b8">Batter 8</p>
+            <p id="p1b9">Batter 9</p>
+            <p id="p1b10">Batter 10</p>
+            <p id="p1b11">Batter 11</p>
+        </div>
+        <div id = "d2">
+            <h1>Team 2</h1>
+            <h2 id="p2">Score: 0</h2>
+            <button id = "bat2" onclick = "bat2()">Bat</button> 
+            <p class = "b">Batters</p>
+            <p id="p2b1">Batter 1</p>
+            <p id="p2b2">Batter 2</p>
+            <p id="p2b3">Batter 3</p>
+            <p id="p2b4">Batter 4</p>
+            <p id="p2b5">Batter 5</p>
+            <p id="p2b6">Batter 6</p>
+            <p id="p2b7">Batter 7</p>
+            <p id="p2b8">Batter 8</p>
+            <p id="p2b9">Batter 9</p>
+            <p id="p2b10">Batter 10</p>
+            <p id="p2b11">Batter 11</p>
+        </div>
+    </body>
+</html>
